@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>바밤바 리조트에 오신 것을 환영합니다</title>
+	<style>
+		.top-iframe {
+			width: 100%;
+			display: block;
+			min-height: 100px;
+			border: none;
+		}
+
+		.main-iframe {
+			width: 100%;
+			display: block;
+			min-height: 100px;
+			border: none;
+			overflow: hidden;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<iframe src="top.html" title="리조트 상단" class="top-iframe" onload="resizeIframe(this)"></iframe>
+	<iframe src="main.html" name="main" title="리조트 메인" class="main-iframe"onload="resizeIframe(this)"></iframe>
+
+	<script>
+		function resizeIframe(iframe) {
+			iframe.style.height = 'auto';
+			iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+		}
+	</script>
+</body>
+
+</html>
