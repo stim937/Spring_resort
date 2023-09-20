@@ -1,12 +1,7 @@
 package kr.ac.kopo.ctc.kopo25.resort.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -34,6 +29,5 @@ public class MainController {
 	public String RoomPage3() {
 		return "/introduce/room_3"; // JSP 페이지 이름
 	}
-
 
 }

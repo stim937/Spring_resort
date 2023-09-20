@@ -103,34 +103,34 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">리조트 소개</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="main">바밤바 리조트</a></li>
-							<li><a class="dropdown-item" href="room_01">VIP Room</a></li>
-							<li><a class="dropdown-item" href="room_02">Deluxe Room</a></li>
-							<li><a class="dropdown-item" href="room_03">Standard Room</a></li>
+							<li><a class="dropdown-item" href="/main">바밤바 리조트</a></li>
+							<li><a class="dropdown-item" href="/room_01">VIP Room</a></li>
+							<li><a class="dropdown-item" href="/room_02">Deluxe Room</a></li>
+							<li><a class="dropdown-item" href="/room_03">Standard Room</a></li>
 						</ul></li>
 
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">찾아오기</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="main.html">찾아오는길</a></li>
+							<li><a class="dropdown-item" href="/main.html">찾아오는길</a></li>
 							<li><a class="dropdown-item" href="#">대중교통 이용</a></li>
 							<li><a class="dropdown-item" href="#">자가용 이용</a></li>
 						</ul></li>
 
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">주변여행지</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="main.html">높아산</a></li>
+							<li><a class="dropdown-item" href="/main.html">높아산</a></li>
 							<li><a class="dropdown-item" href="#">조아 해수욕장</a></li>
 							<li><a class="dropdown-item" href="#">따끈온천</a></li>
 						</ul></li>
 
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">예약하기</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="resvInfo">예약상황</a></li>
+							<li><a class="dropdown-item" href="/resvInfo">예약상황</a></li>
 						</ul></li>
 
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">리조트소식</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="main.html">공지사항</a></li>
+							<li><a class="dropdown-item" href="/notifyList">공지사항</a></li>
 							<li><a class="dropdown-item" href="#">리뷰</a></li>
 						</ul></li>
 				</ul>
@@ -140,7 +140,6 @@
 				</div>
 			</div>
 		</div>
-	</nav>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	</nav>	
 </body>
 </html>

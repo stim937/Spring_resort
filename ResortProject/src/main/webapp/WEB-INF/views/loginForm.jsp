@@ -60,7 +60,7 @@ body {
 				</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-			<p class="mt-5 mb-3 text-muted">&copy; 2023</p>
+			<p class="mt-5 mb-3 text-muted">&copy; 2023 Company, Inc</p>
 		</form>
 	</main>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
