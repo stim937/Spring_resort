@@ -10,7 +10,7 @@
 		<jsp:include page="../top.jsp" />
 	</div>
 	<div class="container">
-		깃 커밋용으로 한번 바꿔본 메인22222222
+		커밋 앤 푸쉬 연습
 		<jsp:include page="../bottom.jsp" />
 	</div>
 </body>
