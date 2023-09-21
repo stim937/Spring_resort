@@ -72,23 +72,23 @@ public class BoardItemController {
 		return "redirect:/notifyList/1";
 	}
 	
-	// TODO:9/20 여기부터 해야함
 	// 글 수정 폼 보기
-	@RequestMapping(value = "/Edit/{postId}", method = RequestMethod.GET)
+	@GetMapping(value = "/notifyEdit/{postId}")
 	public String showEditForm(@PathVariable long postId, Model model) {
 		Optional<BoardItem> optionalBoardItem = boardItemRepository.findById(postId);
 		BoardItem boardItem = optionalBoardItem.orElse(null);
 		model.addAttribute("board", boardItem);
-		return "Edit"; // 수정 페이지를 보여주는 JSP 페이지 이름
+		return "/notification/notifyEdit"; // 수정 페이지를 보여주는 JSP 페이지 이름
 	}
 
 	// 글 수정하기
-	@PostMapping("/Edit/{postId}")
+	// TODO:9/21 여기부터 해야함
+	@PostMapping("/notifyEdit")
 	public String handleEditForm(@PathVariable("postId") long postId, @RequestParam("title") String title,
 			@RequestParam("content") String content, RedirectAttributes redirectAttributes) {
 		boardItemService.updateBoardItem(postId, title, content);
 		redirectAttributes.addFlashAttribute("message", "글 수정이 완료되었습니다.");
-		return "redirect:/board/View/" + postId;
+		return "redirect:/board/View/";
 	}
 	
 	// 글 삭제 처리

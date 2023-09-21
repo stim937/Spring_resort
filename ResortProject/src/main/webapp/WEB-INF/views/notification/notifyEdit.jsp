@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h2>글 수정</h2>
-	<form action="/board/Edit/${board.id}" method="post" onsubmit="return validateForm()">
+	<form action="/notifyEdit/${board.id}" method="post" onsubmit="return validateForm()">
 		<table cellspacing="0" width="550" border="1">
 			<tr>
 				<td class="head">제목</td>

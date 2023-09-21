@@ -11,34 +11,40 @@
 	</div>
 	<div class="container mt-3">
 		<c:if test="${not empty message}">
-			<div class="alert alert-success w-25">${message}</div>
+			<div class="alert alert-success w-50">${message}</div>
 		</c:if>
 
 		<form class="w-75" id="update_data">
 			<table class="table table-bordered mt-3">
 				<tr>
 					<td>번호</td>
-					<td colspan="3">
+					<td>
 						<input type="text" class="form-control" name="id" value="${board.id}" readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>제목</td>
-					<td colspan="3">
+					<td>
 						<input type="text" class="form-control" name="title" value="${board.title}" readonly>
 					</td>
 				</tr>
 				<tr>
+					<td>작성자</td>
+					<td >
+						<input type="text" class="form-control" name="name" value="${board.name}" readonly>
+					</td>
+				</tr>
+				<tr>
 					<td>일자</td>
-					<td colspan="3">${board.date}</td>
+					<td>${board.date}</td>
 				</tr>
 				<tr>
 					<td>조회수</td>
-					<td colspan="3">${board.viewcnt}</td>
+					<td>${board.viewcnt}</td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td colspan="3">
+					<td>
 						<pre>${board.content}</pre>
 					</td>
 				</tr>
@@ -105,7 +111,7 @@
 				<c:when test="${not empty sessionScope.loginInfo}">
 					<form action="/SaveComment/${board.id}" method="post" onsubmit="return validateForm()">
 						<div class="form-group">
-							<textarea class="form-control" id="content" name="content" required></textarea>
+							<textarea class="form-control w-75" id="content" name="content" required></textarea>
 						</div>
 						<button type="submit" class="btn btn-primary">작성</button>
 					</form>
@@ -126,7 +132,7 @@
         }
 
         function editPost(postId) {
-            location.href = "/board/Edit/" + postId;
+            location.href = "/notifyEdit/" + postId;
         }
 
         function deleteComment(commentId) {
