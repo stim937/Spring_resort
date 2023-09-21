@@ -29,8 +29,10 @@ public class BoardItem {
 	String content;
 	
 	@Column
+	String name;
+	
+	@Column
 	int viewcnt;
-
 
 	public long getId() {
 		return id;
@@ -64,6 +66,14 @@ public class BoardItem {
 		this.content = content;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getViewcnt() {
 		return viewcnt;
 	}
@@ -71,8 +81,6 @@ public class BoardItem {
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
-	
-	
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="boardItem", fetch = FetchType.LAZY)
 	private Collection<BoardComment> boardComment;

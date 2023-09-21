@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.servlet.http.HttpSession;
 import kr.ac.kopo.ctc.kopo25.resort.domain.BoardComment;
 import kr.ac.kopo.ctc.kopo25.resort.domain.BoardItem;
+import kr.ac.kopo.ctc.kopo25.resort.domain.User;
 import kr.ac.kopo.ctc.kopo25.resort.repository.BoardItemRepository;
 import kr.ac.kopo.ctc.kopo25.resort.service.BoardCommentService;
 import kr.ac.kopo.ctc.kopo25.resort.service.BoardItemService;
@@ -50,7 +51,7 @@ public class BoardItemController {
 	}
 
 	// 선택한 한개 글 보기
-	@GetMapping(value = "/View/{id}")
+	@GetMapping(value = "/notifyView/{id}")
 	public String viewBoardItem(@PathVariable("id") long id, Model model, HttpSession session) {
 		return boardItemService.viewBoardItem(id, model, session);
 	}
@@ -65,12 +66,13 @@ public class BoardItemController {
 	// 새 글 입력하기
 	@PostMapping("/saveNew")
 	public String saveNewPost(@RequestParam("title") String title, @RequestParam("content") String content,
-			RedirectAttributes redirectAttributes) {
-		boardItemService.saveNewPost(title, content);
+			RedirectAttributes redirectAttributes, HttpSession session) {
+		boardItemService.saveNewPost(title, content, session);
 		redirectAttributes.addFlashAttribute("message", "글 입력이 성공적으로 완료되었습니다.");
 		return "redirect:/notifyList/1";
 	}
-
+	
+	// TODO:9/20 여기부터 해야함
 	// 글 수정 폼 보기
 	@RequestMapping(value = "/Edit/{postId}", method = RequestMethod.GET)
 	public String showEditForm(@PathVariable long postId, Model model) {
@@ -88,17 +90,7 @@ public class BoardItemController {
 		redirectAttributes.addFlashAttribute("message", "글 수정이 완료되었습니다.");
 		return "redirect:/board/View/" + postId;
 	}
-
-	// 댓글 수정을 처리하는 메서드
-	@PostMapping("/updateComment/{commentId}")
-	public String updateComment(@PathVariable Long commentId, @ModelAttribute BoardComment updatedComment,
-			@RequestParam Long rootId) {
-		// 댓글 업데이트 로직
-		boardCommentService.updateComment(commentId, updatedComment.getTitle(), updatedComment.getContent());
-		// 수정된 댓글의 상세 페이지로 리다이렉트
-		return "redirect:/board/View/" + rootId;
-	}
-
+	
 	// 글 삭제 처리
 	@RequestMapping(value = "/Delete/{postId}", method = RequestMethod.GET)
 	public String deletePost(@PathVariable long postId, RedirectAttributes redirectAttributes) {
@@ -108,6 +100,31 @@ public class BoardItemController {
 		return "redirect:/board/List/1";
 	}
 
+
+	// 댓글 작성
+	@PostMapping("/SaveComment/{boardId}")
+	public String saveComment(@RequestParam("content") String content,
+			RedirectAttributes redirectAttributes, @PathVariable Long boardId, HttpSession session) {
+		// 댓글 작성 폼에서 제출된 댓글 정보를 CommentService를 통해 저장합니다.
+		User loginInfo = (User) session.getAttribute("loginInfo");
+		
+		boardCommentService.saveNewComment(loginInfo.getNickname(), content, boardId);
+		redirectAttributes.addFlashAttribute("message", "댓글 입력이 성공적으로 완료되었습니다.");
+		// 댓글 저장이 완료되면, 다시 원래의 게시물 페이지로 돌아갑니다.
+		return "redirect:/notifyView/" + boardId;
+	}
+	
+	// 댓글 수정을 처리하는 메서드
+	@PostMapping("/updateComment/{commentId}")
+	public String updateComment(@PathVariable Long commentId, @ModelAttribute BoardComment updatedComment,
+			@RequestParam Long rootId, HttpSession session) {
+		// 댓글 업데이트 로직
+		User loginInfo = (User) session.getAttribute("loginInfo");
+		boardCommentService.updateComment(commentId, loginInfo.getNickname(), updatedComment.getContent());
+		// 수정된 댓글의 상세 페이지로 리다이렉트
+		return "redirect:/notifyView/" + rootId;
+	}
+	
 	// 댓글 삭제
 	@GetMapping("/DeleteComment/{commentId}")
 	public String deleteComment(@PathVariable Long commentId, @RequestParam Long rootId,
@@ -115,19 +132,9 @@ public class BoardItemController {
 		boardCommentService.deleteBoardComment(commentId);
 		redirectAttributes.addFlashAttribute("message", "댓글 삭제가 완료되었습니다.");
 		// 원본 글의 아이디에 해당하는 뷰 페이지로 리다이렉트합니다.
-		return "redirect:/board/View/" + rootId;
+		return "redirect:/notifyView/" + rootId;
 	}
 
-	// 댓글 작성
-	@PostMapping("/SaveComment/{boardId}")
-	public String saveComment(@RequestParam("title") String title, @RequestParam("content") String content,
-			RedirectAttributes redirectAttributes, @PathVariable Long boardId) {
-		// 댓글 작성 폼에서 제출된 댓글 정보를 CommentService를 통해 저장합니다.
-		boardCommentService.saveNewComment(title, content, boardId);
-		redirectAttributes.addFlashAttribute("message", "댓글 입력이 성공적으로 완료되었습니다.");
-		// 댓글 저장이 완료되면, 다시 원래의 게시물 페이지로 돌아갑니다.
-		return "redirect:/board/View/" + boardId;
-	}
 
 	// 제목을 기준으로 검색
 	@RequestMapping(value = "/Search", method = RequestMethod.GET)

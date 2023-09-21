@@ -24,7 +24,7 @@ public class User {
     private String nickname;
 
     @Column
-    private UserRole role;
+    private int role;
 
 	public Long getId() {
 		return id;
@@ -42,7 +42,7 @@ public class User {
 		return nickname;
 	}
 
-	public UserRole getRole() {
+	public int getRole() {
 		return role;
 	}
 
@@ -62,7 +62,7 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public void setRole(UserRole role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
     

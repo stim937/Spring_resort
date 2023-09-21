@@ -13,7 +13,7 @@ public interface BoardItemService {
 	String viewBoardItem(long id, Model model, HttpSession session);
 
 	// CREATE
-	void saveNewPost(String title, String content);
+	void saveNewPost(String title, String content, HttpSession session);
 
 	// UPDATE
 	void updateBoardItem(long postId, String title, String content);

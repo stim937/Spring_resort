@@ -9,11 +9,9 @@
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container">
+	<div class="container mt-3">
 		<h2 align="center">공지사항</h2>
-
-
-
+		
 		<div style="display: flex; justify-content: space-between;">
 			<form name="searchForm" action="../Search" method="get" onsubmit="return validateSearchForm();" style="flex: 1;">
 				<div class="input-group mb-3">
@@ -22,9 +20,9 @@
 			</form>
 
 			<div style="flex: 0;">
-				<c:if test="${sessionScope.loginInfo != null}">
+				<c:if test="${sessionScope.loginInfo.role == 1}">
 					<form action='/New'>
-						<input class="btn btn-outline-secondary" type='submit' value='글 작성'>
+						<input class="btn btn-outline-secondary" type='submit' value='공지사항 작성'>
 					</form>
 				</c:if>
 			</div>
@@ -45,9 +43,9 @@
 					<tr>
 						<td>${board.id}</td>
 						<td align="left">
-							<a href="/View/${board.id}">${board.title}</a>
+							<a href="/notifyView/${board.id}">${board.title}</a>
 						</td>
-						<td>EZ_Resrot</td>
+						<td>${board.name}</td>
 						<td>${board.viewcnt}</td>
 						<td>${board.date}</td>
 					</tr>
@@ -119,6 +117,7 @@
 		<c:if test="${not empty message}">
 			<div class="alert">${message}</div>
 		</c:if>
+		
 		<jsp:include page="../bottom.jsp" />
 	</div>
 	

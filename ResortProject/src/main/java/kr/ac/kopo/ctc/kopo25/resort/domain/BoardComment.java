@@ -17,7 +17,7 @@ public class BoardComment {
 	long id;
 
 	@Column
-	String title;
+	String name;
 
 	@Column
 	String date;
@@ -34,12 +34,12 @@ public class BoardComment {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDate() {

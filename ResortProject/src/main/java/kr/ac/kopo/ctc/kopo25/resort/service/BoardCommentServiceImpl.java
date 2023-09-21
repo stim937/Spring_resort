@@ -30,9 +30,9 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 	
 	@Override
 	@Transactional
-	public void saveNewComment(String title, String content, long boardId) {
+	public void saveNewComment(String name, String content, long boardId) {
 	    BoardComment newComment = new BoardComment();
-	    newComment.setTitle(title);
+	    newComment.setName(name);
 	    newComment.setContent(content);
 	    newComment.setDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 	    
@@ -45,14 +45,16 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 	
 	@Override
 	@Transactional
-	public void updateComment(long commentId, String title, String content) {
+	public void updateComment(long commentId, String name, String content) {
 	    Optional<BoardComment> existingCommentOptional = boardCommentRepository.findById(commentId);
 	    if (existingCommentOptional.isPresent()) {
 	        // 기존 댓글을 찾은 경우
 	        BoardComment existingComment = existingCommentOptional.get();
+	        
 	        // 새로운 제목과 내용으로 업데이트
-	        existingComment.setTitle(title);
+	        existingComment.setName(name);
 	        existingComment.setContent(content);
+	       
 	        // 기존 댓글 업데이트
 	        boardCommentRepository.save(existingComment);
 	    } else {

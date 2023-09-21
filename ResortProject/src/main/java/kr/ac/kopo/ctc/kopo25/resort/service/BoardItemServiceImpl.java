@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import kr.ac.kopo.ctc.kopo25.resort.domain.BoardItem;
+import kr.ac.kopo.ctc.kopo25.resort.domain.User;
 import kr.ac.kopo.ctc.kopo25.resort.repository.BoardItemRepository;
 
 @Service
@@ -45,6 +46,7 @@ public class BoardItemServiceImpl implements BoardItemService {
 		return boardItemRepository.findAll(pageable);
 	}
 
+	// TODO:이거 수정요함
 	@Override
 	public String viewBoardItem(long id, Model model, HttpSession session) {
 		// TODO Auto-generated method stub
@@ -87,11 +89,23 @@ public class BoardItemServiceImpl implements BoardItemService {
 
 	@Override
 	@Transactional
-	public void saveNewPost(String title, String content) {
+	public void saveNewPost(String title, String content, HttpSession session) {
 		BoardItem newPost = new BoardItem();
 		newPost.setTitle(title);
 		newPost.setContent(content);
 		newPost.setDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		
+	    // Retrieve loginInfo from session
+	    User loginInfo = (User) session.getAttribute("loginInfo");
+
+	    // Check if loginInfo is not null and it has a name
+	    if (loginInfo != null && loginInfo.getNickname() != null) {
+	        newPost.setName(loginInfo.getNickname());
+	    } else {
+	        // Handle the case where name is not available
+	        newPost.setName("Unknown"); // Set a default name or handle accordingly
+	    }
+		
 		boardItemRepository.save(newPost);
 	}
 

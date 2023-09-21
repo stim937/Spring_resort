@@ -21,7 +21,7 @@ body {
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container">
+	<div class="container mt-3">
 		<h2>예약현황</h2>
 		<c:if test="${not empty message}">
 			<div class="alert alert-success">${message}</div>
