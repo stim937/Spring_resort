@@ -71,8 +71,8 @@ public class BoardItemController {
 		redirectAttributes.addFlashAttribute("message", "글 입력이 성공적으로 완료되었습니다.");
 		return "redirect:/notifyList/1";
 	}
-	
-	// 글 수정 폼 보기
+
+	// 본문 수정 폼으로 이동
 	@GetMapping(value = "/notifyEdit/{postId}")
 	public String showEditForm(@PathVariable long postId, Model model) {
 		Optional<BoardItem> optionalBoardItem = boardItemRepository.findById(postId);
@@ -81,25 +81,24 @@ public class BoardItemController {
 		return "/notification/notifyEdit"; // 수정 페이지를 보여주는 JSP 페이지 이름
 	}
 
-	// 글 수정하기
-	// TODO:9/21 여기부터 해야함
-	@PostMapping("/notifyEdit")
-	public String handleEditForm(@PathVariable("postId") long postId, @RequestParam("title") String title,
-			@RequestParam("content") String content, RedirectAttributes redirectAttributes) {
-		boardItemService.updateBoardItem(postId, title, content);
+	// 본문 수정
+	@PostMapping("/pushEdit")
+	public String handleEditForm(@RequestParam("title") String title, @RequestParam("content") String content, 
+			@RequestParam("boardId") long boardId, RedirectAttributes redirectAttributes) {	
+		
+		boardItemService.updateBoardItem(boardId, title, content);		
 		redirectAttributes.addFlashAttribute("message", "글 수정이 완료되었습니다.");
-		return "redirect:/board/View/";
+		return "redirect:/notifyView/" + boardId;
 	}
 	
-	// 글 삭제 처리
-	@RequestMapping(value = "/Delete/{postId}", method = RequestMethod.GET)
+	// 본문 삭제
+	@GetMapping(value = "/notifyDelete/{postId}")
 	public String deletePost(@PathVariable long postId, RedirectAttributes redirectAttributes) {
 		// 해당 글과 관련된 댓글들도 함께 삭제하는 서비스 메서드 호출
 		boardItemService.deleteBoardItem(postId);
-		redirectAttributes.addFlashAttribute("message", "글 삭제가 완료되었습니다.");
-		return "redirect:/board/List/1";
+		redirectAttributes.addFlashAttribute("message", "글 삭제가 성공적으로 완료되었습니다.");
+		return "redirect:/notifyList/1";
 	}
-
 
 	// 댓글 작성
 	@PostMapping("/SaveComment/{boardId}")
@@ -114,7 +113,7 @@ public class BoardItemController {
 		return "redirect:/notifyView/" + boardId;
 	}
 	
-	// 댓글 수정을 처리하는 메서드
+	// 댓글 수정
 	@PostMapping("/updateComment/{commentId}")
 	public String updateComment(@PathVariable Long commentId, @ModelAttribute BoardComment updatedComment,
 			@RequestParam Long rootId, HttpSession session) {
@@ -137,16 +136,16 @@ public class BoardItemController {
 
 
 	// 제목을 기준으로 검색
-	@RequestMapping(value = "/Search", method = RequestMethod.GET)
+	@GetMapping(value = "/notifySearch")
     public String search(@RequestParam(name = "keyword") String keyword,
                          @RequestParam(name = "page", defaultValue = "1") Integer curPage,
                          Model model) {
-        int itemsPerPage = 10;
+        int itemsPerPage = 5;
         Page<BoardItem> searchResultPage = boardItemService.searchWithPagination(curPage, itemsPerPage, keyword);
         // 검색 결과를 모델에 추가하여 JSP 페이지에서 접근할 수 있도록 합니다.
         model.addAttribute("page", searchResultPage);
         // Search.jsp 페이지를 반환합니다.
-        return "Search";
+        return "/notification/notifySearch";
     }
 
 }

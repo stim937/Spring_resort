@@ -3,41 +3,38 @@
 <html>
 <head>
 <title>글 수정</title>
-<style>
-.head {
-	/* 원하는 스타일 속성들을 추가 */
-	font-weight: bold;
-	background-color: #f2f2f2;
-	/* 기타 원하는 스타일 속성들을 추가 */
-}
-</style>
 </head>
 <body>
-	<h2>글 수정</h2>
-	<form action="/notifyEdit/${board.id}" method="post" onsubmit="return validateForm()">
-		<table cellspacing="0" width="550" border="1">
-			<tr>
-				<td class="head">제목</td>
-				<td colspan="3">
-					<input type="text" name="title" id="title" value="${board.title}" style="width: 502px;">
-				</td>
-			</tr>
-			<tr>
-				<td class="head">내용</td>
-				<td colspan="3">
-					<textarea name="content" id="content" rows="10" cols="68">${board.content}</textarea>
-				</td>
-			</tr>
-			<%-- 기타 필요한 정보들을 출력하는 부분들은 삭제 --%>
-		</table>
-		<table cellspacing="0" width="550" border="0">
-			<tr>
-				<td style="text-align: right;">
-					<input type="submit" value="저장"> <input type="button" value="취소" onclick="location.href='/board/View/${board.id}'">
-				</td>
-			</tr>
-		</table>
-	</form>
+	<div>
+		<jsp:include page="../top.jsp" />
+	</div>
+	
+	<div class="container mt-4">
+		<h2>공지사항 수정</h2>
+		<form class="mt-3" action="/pushEdit" method="post" onsubmit="return validateForm()">
+			<div class="form-group">
+				<label for="postId">글 번호</label> 
+				<input type="text" class="form-control border-black w-50" id="boardId" name="boardId" value="${board.id}" readonly>
+			</div>
+			
+			<div class="form-group mt-3">
+				<label for="title">제목</label> 
+				<input type="text" class="form-control border-black w-50" id="title" name="title" value="${board.title}" required>
+			</div>
+			
+			<div class="form-group mt-3">
+				<label for="content">내용</label>
+				<textarea class="form-control border-black w-50" id="content" name="content" rows="5" required>${board.content}</textarea>
+			</div>
+			
+			<div class="text-right mt-3">
+				<button type="submit" class="btn btn-primary modify">저장</button>		
+				<button type="button" class="btn btn-secondary cancel" onclick="location.href='/notifyView/${board.id}'">취소</button>			
+			</div>
+		</form>
+		<jsp:include page="../bottom.jsp" />
+	</div>
+	
 	<script>
 		function validateForm() {
 			var titleInput = document.getElementById('title').value.trim();

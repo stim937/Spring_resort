@@ -11,11 +11,16 @@
 	</div>
 	<div class="container mt-3">
 		<h2 align="center">공지사항</h2>
-		
+			
+		<c:if test="${not empty message}">
+			<div class="alert alert-success w-25">${message}</div>
+		</c:if>
+	
 		<div style="display: flex; justify-content: space-between;">
-			<form name="searchForm" action="../Search" method="get" onsubmit="return validateSearchForm();" style="flex: 1;">
+			<form name="searchForm" action="/notifySearch" method="get" style="flex: 1;">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control-sm" name="keyword" placeholder="검색어를 입력하세요" aria-label="검색창" aria-describedby="button-addon2"> <input class="btn btn-primary" type="submit" id="button-addon2" value="검색">
+					<input type="text" class="form-control-sm" name="keyword" placeholder="검색어를 입력하세요" aria-label="검색창" aria-describedby="button-addon2" required> 
+					<input class="btn btn-primary" type="submit" id="button-addon2" value="검색">
 				</div>
 			</form>
 
@@ -113,23 +118,7 @@
 				</c:if>
 			</ul>
 		</nav>
-
-		<c:if test="${not empty message}">
-			<div class="alert">${message}</div>
-		</c:if>
-		
 		<jsp:include page="../bottom.jsp" />
 	</div>
-	
-	<script>
-		function validateSearchForm() {
-			var keywordInput = document.forms["searchForm"]["keyword"].value;
-			if (keywordInput.trim() === "") {
-				alert("검색어를 입력하세요.");
-				return false;
-			}
-			return true;
-		}
-	</script>
 </body>
 </html>

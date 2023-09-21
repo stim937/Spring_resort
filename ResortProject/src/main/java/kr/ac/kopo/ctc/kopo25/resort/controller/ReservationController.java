@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpSession;
 import kr.ac.kopo.ctc.kopo25.resort.dto.ReservationDTO;
 import kr.ac.kopo.ctc.kopo25.resort.service.ReservationService;
 
@@ -19,9 +20,9 @@ public class ReservationController {
 	private ReservationService reservationService;
 
 	@GetMapping("/resvInfo")
-	public String showReservationPage(Model model) {
+	public String showReservationPage(Model model, HttpSession session) {
 		// 서비스를 통해 데이터를 가져오고 JSP에 전달
-		String[][] resv_arr = reservationService.getReservationArray(); // 예약 정보 배열을 가져오는 메서드
+		String[][] resv_arr = reservationService.getReservationArray(session); // 예약 정보 배열을 가져오는 메서드
 		model.addAttribute("resv_arr", resv_arr);
 
 		return "reservation/resvList"; // JSP 페이지 이름
@@ -56,5 +57,13 @@ public class ReservationController {
 
 		return "redirect:/resvInfo"; // 결과를 보여줄 페이지의 URL로 리다이렉트
 	}
+	
+	@GetMapping("/resvView")
+	public String showReservation() {
+		
+		
+		return "reservation/resvView";
+	}
+	
 
 }

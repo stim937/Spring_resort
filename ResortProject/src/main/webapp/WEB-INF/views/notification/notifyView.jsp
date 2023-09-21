@@ -80,8 +80,8 @@
 									<c:when test="${sessionScope.loginInfo.nickname eq comment.name}">
 										<!-- Code to execute if the first condition is true -->
 										<div class="btn-group" role="group" aria-label="Basic example">
-											<button onclick="showEditForm(${comment.id})" class="btn btn-primary btn-sm">수정</button>
-											<button onclick="deleteComment(${comment.id})" class="btn btn-danger btn-sm">삭제</button>
+											<button onclick="showEditForm(${comment.id})" class="btn btn-sm btn-outline-primary">수정</button>
+											<button onclick="deleteComment(${comment.id})" class="btn btn-sm btn-outline-danger">삭제</button>
 										</div>
 									</c:when>
 									<c:when test="${sessionScope.loginInfo.role == 1}">
@@ -109,7 +109,7 @@
 			<h2>댓글 작성</h2>
 			<c:choose>
 				<c:when test="${not empty sessionScope.loginInfo}">
-					<form action="/SaveComment/${board.id}" method="post" onsubmit="return validateForm()">
+					<form action="/SaveComment/${board.id}" method="post">
 						<div class="form-group">
 							<textarea class="form-control w-75" id="content" name="content" required></textarea>
 						</div>
@@ -127,7 +127,7 @@
 	<script>
         function deletePost(postId) {
             if (confirm("정말로 삭제하시겠습니까?")) {
-                location.href = "/board/Delete/" + postId;
+                location.href = "/notifyDelete/" + postId;
             }
         }
 
@@ -139,16 +139,6 @@
             if (confirm("댓글을 삭제하시겠습니까?")) {
                 location.href = "/DeleteComment/" + commentId + "?rootId=${board.id}";
             }
-        }
-
-        function validateForm() {
-
-            var confirmMessage = "댓글을 작성하시겠습니까?";
-            if (!confirm(confirmMessage)) {
-                return false;
-            }
-
-            return true;
         }
 
         function showEditForm(commentId) {

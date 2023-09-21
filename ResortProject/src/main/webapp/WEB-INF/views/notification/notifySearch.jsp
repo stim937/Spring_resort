@@ -4,165 +4,132 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<title>Spring JPA 게시판</title>
-<style type="text/css">
-.head {
-	/* 원하는 스타일 속성들을 추가 */
-	font-weight: bold;
-	background-color: #f2f2f2;
-	/* 기타 원하는 스타일 속성들을 추가 */
-}
-
-.tooltip {
-	position: absolute;
-	z-index: 3;
-	background: #E8E8E8;
-	border: 1px solid #434343;
-	padding: 3px;
-}
-
-.pagination {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.pagination a {
-	margin: 0 5px;
-	text-decoration: none;
-	color: blue;
-}
-
-.pagination .current {
-	font-weight: bold;
-	color: red;
-}
-
-li { /*li 태그 스타일 설정*/
-	display: inline; /*가로로 진행되는 인라인 형식으로 변경*/
-	font-size: 20px; /* 글꼴 크기 */
-}
-</style>
-<script>
-	function validateSearchForm() {
-		var keywordInput = document.forms["searchForm"]["keyword"].value;
-		if (keywordInput.trim() === "") {
-			alert("검색어를 입력하세요.");
-			return false;
-		}
-		return true;
-	}
-</script>
 </head>
 <body>
-	<div style="width: 600px;">
-		<div style="float: center;">
-			<H3 align="center">
-				Spring Data JPA 게시판<br>(검색 결과)
-			</H3>
-			<h5>총 ${page.totalElements}건</h5>
-			<form name="searchForm" action="Search" method="get"
-				onsubmit="return validateSearchForm();">
-				<input type="text" name="keyword" placeholder="검색어를 입력하세요">
-				<input type="submit" value="검색">
-			</form>
-			<c:if test="${not empty page.content}">
-				<!-- 검색 결과가 있는 경우 -->
-				<table cellspacing="0" width="600" border="1" align="left">
-					<tr align="center" class="head">
-						<td width=10%>번호</td>
-						<td width=55%>제목</td>
-						<td width=15%>조회수</td>
-						<td width=20%>등록일</td>
-					</tr>
-					<c:forEach var="board" items="${page.content}" varStatus="loop">
-						<tr align="center">
-							<td>${board.id}</td>
-							<td align="left"><a href="/board/View/${board.id}">${board.title}</a></td>
-							<td>${board.viewcnt}</td>
-							<td>${board.date}</td>
-						</tr>
-					</c:forEach>
-				</table>
-
-				<div class="pagination">
-					<ul>
-						<!-- 첫 페이지로 가는 링크 -->
-						<c:if test="${page.number > 0}">
-							<li><a href="/board/Search?page=1&keyword=${param.keyword}">&lt;&lt;</a></li>
-						</c:if>
-
-						<!-- 이전 페이지 링크 -->
-						<c:if test="${page.number > 0}">
-							<li><a
-								href="/board/Search?page=${page.number}&keyword=${param.keyword}">&lt;</a></li>
-						</c:if>
-
-						<!-- 페이지 번호 순회 -->
-						<c:set var="startPage" value="${page.number - 4}" />
-						<c:set var="endPage" value="${page.number + 5}" />
-
-						<!-- startPage와 endPage가 범위를 벗어나는 경우 조정 -->
-						<c:if test="${startPage lt 0}">
-							<c:set var="startPage" value="0" />
-							<c:set var="endPage" value="9" />
-						</c:if>
-						<c:if test="${endPage ge page.totalPages}">
-							<c:set var="startPage" value="${page.totalPages - 10}" />
-							<c:set var="endPage" value="${page.totalPages - 1}" />
-						</c:if>
-						<c:choose>
-							<c:when test="${startPage < 0}">
-								<c:set var="startPage" value="0" />
-							</c:when>
-							<c:when test="${endPage >= page.totalPages}">
-								<c:set var="endPage" value="${page.totalPages - 1}" />
-							</c:when>
-						</c:choose>
-
-						<!-- 범위 내의 페이지 번호 표시 -->
-						<c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-							<c:choose>
-								<c:when test="${page.number eq pageNum}">
-									<li><span class="current">${pageNum + 1}</span></li>
-								</c:when>
-								<c:otherwise>
-									<li><a
-										href="/board/Search?page=${pageNum + 1}&keyword=${param.keyword}">${pageNum + 1}</a></li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-
-						<!-- 다음 페이지 링크 -->
-						<c:if test="${page.number < page.totalPages - 1}">
-							<li><a
-								href="/board/Search?page=${page.number + 2}&keyword=${param.keyword}">&gt;</a></li>
-						</c:if>
-
-						<!-- 마지막 페이지로 가는 링크 -->
-						<c:if test="${page.number < page.totalPages - 1}">
-							<li><a
-								href="/board/Search?page=${page.totalPages}&keyword=${param.keyword}">&gt;&gt;</a></li>
-						</c:if>
-					</ul>
+	<div>
+		<jsp:include page="../top.jsp" />
+	</div>
+	
+	<div class="container mt-3">
+		<h2 align="center">공지사항 검색 결과</h2>
+		
+		<c:if test="${not empty message}">
+			<div class="alert alert-success w-25">${message}</div>
+		</c:if>
+		<h5>총 ${page.totalElements}건</h5>
+			
+		<div style="display: flex; justify-content: space-between;">
+			<form name="searchForm" action="/notifySearch" method="get" style="flex: 1;">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control-sm" name="keyword" placeholder="검색어를 입력하세요" aria-label="검색창" aria-describedby="button-addon2" required> 
+					<input class="btn btn-primary" type="submit" id="button-addon2" value="검색">
 				</div>
-			</c:if>
+			</form>
+
+			<div style="flex: 0;">
+				<c:if test="${sessionScope.loginInfo.role == 1}">
+					<form action='/New'>
+						<input class="btn btn-outline-secondary" type='submit' value='공지사항 작성'>
+					</form>
+				</c:if>
+			</div>
+		</div>
+
+		<c:if test="${not empty page.content}">	
+			<!-- 검색 결과가 있는 경우 -->
+			<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+					<th>등록일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="board" items="${page.content}" varStatus="loop">
+					<tr>
+						<td>${board.id}</td>
+						<td align="left">
+							<a href="/notifyView/${board.id}">${board.title}</a>
+						</td>
+						<td>${board.name}</td>
+						<td>${board.viewcnt}</td>
+						<td>${board.date}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<nav aria-label="notifyList pagination">
+		    <ul class="pagination justify-content-center pagination-sm">
+		        <!-- 첫 페이지로 가는 링크 -->
+		        <c:if test="${page.number > 0}">
+		            <li class="page-item"><a class="page-link" href="/notifySearch?page=1&keyword=${param.keyword}">&lt;&lt;</a></li>
+		        </c:if>
+		
+		        <!-- 이전 페이지 링크 -->
+		        <c:if test="${page.number > 0}">
+		            <li class="page-item"><a class="page-link" href="/notifySearch?page=${page.number - 1}&keyword=${param.keyword}">&lt;</a></li>
+		        </c:if>
+		
+		        <!-- 페이지 번호 순회 -->
+		        <c:set var="startPage" value="${page.number - 4}" />
+		        <c:set var="endPage" value="${page.number + 5}" />
+		
+		        <!-- startPage와 endPage가 범위를 벗어나는 경우 조정 -->
+		        <c:if test="${startPage lt 0}">
+		            <c:set var="startPage" value="0" />
+		            <c:set var="endPage" value="9" />
+		        </c:if>
+		        <c:if test="${endPage ge page.totalPages}">
+		            <c:set var="startPage" value="${page.totalPages - 10}" />
+		            <c:set var="endPage" value="${page.totalPages - 1}" />
+		        </c:if>
+		        <c:choose>
+		            <c:when test="${startPage < 0}">
+		                <c:set var="startPage" value="0" />
+		            </c:when>
+		            <c:when test="${endPage >= page.totalPages}">
+		                <c:set var="endPage" value="${page.totalPages - 1}" />
+		            </c:when>
+		        </c:choose>
+		
+		        <!-- 범위 내의 페이지 번호 표시 -->
+		        <c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
+		            <c:choose>
+		                <c:when test="${page.number eq pageNum}">
+		                    <li class="page-item active" aria-current="page"><span class="page-link">${pageNum + 1}</span></li>
+		                </c:when>
+		                <c:otherwise>
+		                    <li class="page-item"><a class="page-link" href="/notifySearch?page=${pageNum + 1}&keyword=${param.keyword}">${pageNum + 1}</a></li>
+		                </c:otherwise>
+		            </c:choose>
+		        </c:forEach>
+		
+		        <!-- 다음 페이지 링크 -->
+		        <c:if test="${page.number < page.totalPages - 1}">
+		            <li class="page-item"><a class="page-link" href="/notifySearch?page=${page.number + 2}&keyword=${param.keyword}">&gt;</a></li>
+		        </c:if>
+		
+		        <!-- 마지막 페이지로 가는 링크 -->
+		        <c:if test="${page.number < page.totalPages - 1}">
+		            <li class="page-item"><a class="page-link" href="/notifySearch?page=${page.totalPages}&keyword=${param.keyword}">&gt;&gt;</a></li>
+		        </c:if>
+		    </ul>
+		</nav>
+		</c:if>
 			<c:if test="${empty page.content}">
 				<!-- 검색 결과가 없는 경우 -->
 				<p>검색 결과가 없습니다.</p>
-			</c:if>
-
-			<div style="float: right;">
-				<form action='New'>
-					<input type='submit' value='신규'>
-				</form>
-			</div>
-			<form action='/board/List/1'>
-				<input type='submit' value='전체목록'>
-			</form>
-		</div>
-		<c:if test="${not empty message}">	
-			<div class="alert">${message}</div>
 		</c:if>
+
+		<form action='/notifyList'>
+			<input type='submit' class="btn btn-outline-secondary" value='전체목록'>
+		</form>
+	
+		<jsp:include page="../bottom.jsp" />
 	</div>
 </body>
 </html>

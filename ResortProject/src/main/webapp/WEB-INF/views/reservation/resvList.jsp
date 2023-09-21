@@ -22,11 +22,16 @@ body {
 		<jsp:include page="../top.jsp" />
 	</div>
 	<div class="container mt-3">
-		<h2>예약현황</h2>
+		<h2>
+			예약현황
+			<c:if test="${sessionScope.loginInfo != null && sessionScope.loginInfo.role == 1}">
+				<span class="badge rounded-pill text-bg-warning">관리자 페이지</span>
+			</c:if>
+		</h2>
 		<c:if test="${not empty message}">
 			<div class="alert alert-success">${message}</div>
 		</c:if>
-		<table class="table table-hover">
+		<table class="table table-hover mt-3">
 			<thead class="table-light">
 				<tr>
 					<th scope="col">일자</th>
@@ -55,30 +60,39 @@ body {
 						<td>
 							<c:choose>
 								<c:when test="${resv_arr[2][i] eq '예약가능'}">
-									<button type="button" onclick="handleReservation('${resv_arr[0][i]}', 1)">예약가능</button>
+									<button type="button" class="btn btn-outline-success" onclick="handleReservation('${resv_arr[0][i]}', 1)">${resv_arr[2][i]}</button>
+								</c:when>
+								<c:when test="${resv_arr[2][i] eq '예약불가'}">
+									<button type="button" class="btn btn-outline-danger" disabled>${resv_arr[2][i]}</button>
 								</c:when>
 								<c:otherwise>
-									<span style="font-weight: bold; color: red;">${resv_arr[2][i]}</span>
+									<button type="button" class="btn btn-outline-danger">${resv_arr[2][i]}</button>
 								</c:otherwise>
 							</c:choose>
 						</td>
 						<td>
 							<c:choose>
 								<c:when test="${resv_arr[3][i] eq '예약가능'}">
-									<button type="button" onclick="handleReservation('${resv_arr[0][i]}', 2)">예약가능</button>
+									<button type="button" class="btn btn-outline-success" onclick="handleReservation('${resv_arr[0][i]}', 2)">${resv_arr[3][i]}</button>
+								</c:when>
+								<c:when test="${resv_arr[3][i] eq '예약불가'}">
+									<button type="button" class="btn btn-outline-danger" disabled>${resv_arr[3][i]}</button>
 								</c:when>
 								<c:otherwise>
-									<span style="font-weight: bold; color: red;">${resv_arr[3][i]}</span>
+									<button type="button" class="btn btn-outline-danger">${resv_arr[3][i]}</button>
 								</c:otherwise>
 							</c:choose>
 						</td>
 						<td>
 							<c:choose>
 								<c:when test="${resv_arr[4][i] eq '예약가능'}">
-									<button type="button" onclick="handleReservation('${resv_arr[0][i]}', 3)">예약가능</button>
+									<button type="button" class="btn btn-outline-success" onclick="handleReservation('${resv_arr[0][i]}', 3)">${resv_arr[4][i]}</button>
+								</c:when>
+								<c:when test="${resv_arr[4][i] eq '예약불가'}">
+									<button type="button" class="btn btn-outline-danger" disabled>${resv_arr[4][i]}</button>
 								</c:when>
 								<c:otherwise>
-									<span style="font-weight: bold; color: red;">${resv_arr[4][i]}</span>
+									<button type="button" class="btn btn-outline-danger">${resv_arr[4][i]}</button>
 								</c:otherwise>
 							</c:choose>
 						</td>

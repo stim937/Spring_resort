@@ -103,7 +103,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">리조트 소개</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="/main">바밤바 리조트</a></li>
+							<li><a class="dropdown-item" href="/main">EZ 리조트</a></li>
 							<li><a class="dropdown-item" href="/room_01">VIP Room</a></li>
 							<li><a class="dropdown-item" href="/room_02">Deluxe Room</a></li>
 							<li><a class="dropdown-item" href="/room_03">Standard Room</a></li>

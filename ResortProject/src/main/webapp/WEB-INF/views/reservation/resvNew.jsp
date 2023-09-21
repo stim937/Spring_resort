@@ -10,7 +10,7 @@
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container mt-3">>
+	<div class="container mt-3">
 	    <h1>예약 페이지</h1>
 	    <form action="resvSave" method="POST">
 	        <label for="date">날짜:</label>

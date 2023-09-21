@@ -8,8 +8,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
 import kr.ac.kopo.ctc.kopo25.resort.domain.Reservation;
 import kr.ac.kopo.ctc.kopo25.resort.domain.ReservationId;
+import kr.ac.kopo.ctc.kopo25.resort.domain.User;
 import kr.ac.kopo.ctc.kopo25.resort.dto.ReservationDTO;
 import kr.ac.kopo.ctc.kopo25.resort.repository.ReservationRepository;
 
@@ -20,21 +22,24 @@ public class ReservationServiceImpl implements ReservationService {
 	private ReservationRepository reservationRepository;
 
 	@Override
-	public String roomInfo(int room, Date date) {
+	public String roomInfo(int room, Date date, HttpSession session) {
 		ReservationId reservationId = createReservationId(room, date);
 		Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
-
+		
 		if (reservationOptional.isPresent()) {
-//			Reservation reservation = reservationOptional.get();
-//			return reservation.getName();
-			return "예약완료";
-		} else {
+			if (session.getAttribute("loginInfo") != null && ((User) session.getAttribute("loginInfo")).getRole() == 1) {       
+	            Reservation reservation = reservationOptional.get();
+	            return reservation.getName();
+	        } else {
+	            return "예약불가";
+	        }
+		} else{
 			return "예약가능";
-		}
+	    }
 	}
 
 	@Override
-	public String[][] getReservationArray() {
+	public String[][] getReservationArray(HttpSession session) {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String[][] resv_arr = new String[5][30];
@@ -48,9 +53,9 @@ public class ReservationServiceImpl implements ReservationService {
 			resv_arr[1][i] = getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK));
 
 			// Room1 예약 정보
-			resv_arr[2][i] = roomInfo(1, date);
-			resv_arr[3][i] = roomInfo(2, date);
-			resv_arr[4][i] = roomInfo(3, date);
+			resv_arr[2][i] = roomInfo(1, date, session);
+			resv_arr[3][i] = roomInfo(2, date, session);
+			resv_arr[4][i] = roomInfo(3, date, session);
 
 			// 다음 날짜로 이동
 			calendar.add(Calendar.DATE, 1);

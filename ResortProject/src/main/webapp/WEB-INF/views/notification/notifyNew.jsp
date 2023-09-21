@@ -8,12 +8,13 @@
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container mt-3">>
-		<h2 class="mt-5">공지사항 작성</h2>
-		<form class="mt-4" method="post" action="/saveNew" onsubmit="return validateForm()">
+	
+	<div class="container mt-5">
+		<h2>공지사항 작성</h2>
+		<form class="mt-3" method="post" action="/saveNew" onsubmit="return validateForm()">
 			<div class="form-group">
 				<label for="title">제목</label> 
-				<input type="text" class="form-control border-black w-50" id="title" name="title" required s>
+				<input type="text" class="form-control border-black w-50" id="title" name="title" required>
 			</div>
 			<div class="form-group mt-3">
 				<label for="content">내용</label>
