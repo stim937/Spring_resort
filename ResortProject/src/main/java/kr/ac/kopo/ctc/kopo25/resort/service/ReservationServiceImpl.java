@@ -63,6 +63,17 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return resv_arr;
 	}
+	
+	//룸, 날짜 기준으로 예약정보 가져오기
+	public Reservation getResvInfo(int room, Date date) {
+		ReservationId reservationId = createReservationId(room, date);
+		Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
+		return reservationOptional.orElse(null);
+	}
+	
+	
+	
+	
 
 	private ReservationId createReservationId(int room, Date date) {
 		return new ReservationId(date, room);

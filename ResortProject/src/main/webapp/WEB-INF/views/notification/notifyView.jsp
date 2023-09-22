@@ -45,7 +45,7 @@
 				<tr>
 					<td>내용</td>
 					<td>
-						<pre>${board.content}</pre>
+						 <textarea class="form-control" name="name" rows="7" readonly>${board.content}</textarea>
 					</td>
 				</tr>
 			</table>

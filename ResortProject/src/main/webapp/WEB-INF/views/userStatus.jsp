@@ -3,12 +3,12 @@
 
 <c:choose>
 	<c:when test="${not empty sessionScope.loginInfo}">
-		<b><span style="color: white;"><c:out value="${sessionScope.loginInfo.nickname}" /> 님, 환영합니다.</span></b>
-		<button type="button" class="btn btn-danger rounded-pill px-3" onclick="logout()">로그아웃</button>
+		<b><c:out value="${sessionScope.loginInfo.nickname}" /> 님, 환영합니다.</b>
+		<button type="button" class="btn btn-danger rounded-pill border-black border-3" onclick="logout()">로그아웃</button>
 	</c:when>
 	<c:otherwise>
-		<button type="button" class="btn btn-outline-light me-2" onclick="openLoginForm()">로그인</button>
-		<button type="button" class="btn btn-warning">회원가입</button>
+		<button type="button" class="btn btn-outline-dark border-2" onclick="openLoginForm()">로그인</button>
+		<button type="button" class="btn btn-warning border-black border-2" onclick="window.location.href='/joinForm'">회원가입</button>
 	</c:otherwise>
 </c:choose>
 

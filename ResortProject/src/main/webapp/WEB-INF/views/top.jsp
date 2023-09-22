@@ -92,7 +92,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg fw-bold" style="background-color: #ECF8E0;">
 		<div class="container-xl">
 			<a class="navbar-brand" href="/main"><img src="${pageContext.request.contextPath}/img/resort_logo.jpg" alt="Logo" width="40" height="40"> </a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,7 +131,7 @@
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">리조트소식</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="/notifyList">공지사항</a></li>
-							<li><a class="dropdown-item" href="#">리뷰</a></li>
+							<li><a class="dropdown-item" href="#">이용후기</a></li>
 						</ul></li>
 				</ul>
 

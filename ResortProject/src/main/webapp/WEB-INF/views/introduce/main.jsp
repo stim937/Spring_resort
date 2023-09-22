@@ -5,12 +5,12 @@
 <meta charset="UTF-8">
 <title>메인 페이지</title>
 </head>
-<body>
+<body style="background-color: #ECF8E0;">
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
 	<div class="container">
-		커밋 앤 푸쉬 연습
+		EZ 리조트에 오신것을 환영합니다
 		<jsp:include page="../bottom.jsp" />
 	</div>
 </body>

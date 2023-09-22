@@ -3,6 +3,7 @@ package kr.ac.kopo.ctc.kopo25.resort.service;
 import java.sql.Date;
 
 import jakarta.servlet.http.HttpSession;
+import kr.ac.kopo.ctc.kopo25.resort.domain.Reservation;
 import kr.ac.kopo.ctc.kopo25.resort.dto.ReservationDTO;
 
 public interface ReservationService {
@@ -12,4 +13,6 @@ public interface ReservationService {
     
     //예약하기
     void saveNewResv(ReservationDTO resvDTO);
+    
+    Reservation getResvInfo(int room, Date date);
 }

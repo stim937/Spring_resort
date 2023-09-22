@@ -1,5 +1,7 @@
 package kr.ac.kopo.ctc.kopo25.resort.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
+import kr.ac.kopo.ctc.kopo25.resort.domain.Reservation;
 import kr.ac.kopo.ctc.kopo25.resort.dto.ReservationDTO;
 import kr.ac.kopo.ctc.kopo25.resort.service.ReservationService;
 
@@ -58,10 +61,16 @@ public class ReservationController {
 		return "redirect:/resvInfo"; // 결과를 보여줄 페이지의 URL로 리다이렉트
 	}
 	
+	// 예약 수정을 위해 관리자 권한에서 해당 정보 불러오기
 	@GetMapping("/resvView")
-	public String showReservation() {
+	public String showReservation(Model model,  @RequestParam Date date, @RequestParam int room) {
+		Reservation reservation = reservationService.getResvInfo(room, date);
 		
-		
+	    if (reservation != null) {
+	        model.addAttribute("reservation", reservation);
+	    } else {
+	        model.addAttribute("reservationNotFound", true);
+	    }
 		return "reservation/resvView";
 	}
 	

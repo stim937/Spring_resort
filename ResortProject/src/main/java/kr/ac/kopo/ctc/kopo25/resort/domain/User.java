@@ -14,7 +14,7 @@ public class User {
     @Column
     private Long id;
 
-    @Column
+    @Column(unique = true)
     private String loginId;
     
     @Column
@@ -23,6 +23,9 @@ public class User {
     @Column
     private String nickname;
 
+    @Column(unique = true)
+    private String email;
+    
     @Column
     private int role;
 
@@ -40,6 +43,10 @@ public class User {
 
 	public String getNickname() {
 		return nickname;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	public int getRole() {
@@ -62,9 +69,12 @@ public class User {
 		this.nickname = nickname;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public void setRole(int role) {
 		this.role = role;
 	}
-    
-    
+
 }

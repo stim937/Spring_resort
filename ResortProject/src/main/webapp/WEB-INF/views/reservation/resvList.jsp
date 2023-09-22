@@ -66,7 +66,7 @@ body {
 									<button type="button" class="btn btn-outline-danger" disabled>${resv_arr[2][i]}</button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-outline-danger">${resv_arr[2][i]}</button>
+									<button type="button" class="btn btn-outline-danger" onclick="editResv('${resv_arr[0][i]}', 1)">${resv_arr[2][i]}</button>
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -79,7 +79,7 @@ body {
 									<button type="button" class="btn btn-outline-danger" disabled>${resv_arr[3][i]}</button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-outline-danger">${resv_arr[3][i]}</button>
+									<button type="button" class="btn btn-outline-danger" onclick="editResv('${resv_arr[0][i]}', 2)">${resv_arr[3][i]}</button>
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -92,7 +92,7 @@ body {
 									<button type="button" class="btn btn-outline-danger" disabled>${resv_arr[4][i]}</button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn btn-outline-danger">${resv_arr[4][i]}</button>
+									<button type="button" class="btn btn-outline-danger" onclick="editResv('${resv_arr[0][i]}', 3)">${resv_arr[4][i]}</button>
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -117,6 +117,11 @@ body {
 				alert('로그인이 필요합니다.');
 				openLoginForm();
 			}
+		}
+		
+		function editResv(date, room) { 
+			const url = '/resvView?date=' + date + '&room=' + room;
+			window.location.href = url;
 		}
 		
 		function openLoginForm() {
