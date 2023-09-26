@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import kr.ac.kopo.ctc.kopo25.resort.domain.Reservation;
 import kr.ac.kopo.ctc.kopo25.resort.domain.ReservationId;
 import kr.ac.kopo.ctc.kopo25.resort.domain.User;
@@ -25,17 +26,17 @@ public class ReservationServiceImpl implements ReservationService {
 	public String roomInfo(int room, Date date, HttpSession session) {
 		ReservationId reservationId = createReservationId(room, date);
 		Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
-		
+
 		if (reservationOptional.isPresent()) {
-			if (session.getAttribute("loginInfo") != null && ((User) session.getAttribute("loginInfo")).getRole() == 1) {       
-	            Reservation reservation = reservationOptional.get();
-	            return reservation.getName();
-	        } else {
-	            return "예약불가";
-	        }
-		} else{
+			if (session.getAttribute("loginInfo") != null && ((User) session.getAttribute("loginInfo")).getRole() == 1) {
+				Reservation reservation = reservationOptional.get();
+				return reservation.getName();
+			} else {
+				return "예약불가";
+			}
+		} else {
 			return "예약가능";
-	    }
+		}
 	}
 
 	@Override
@@ -63,17 +64,66 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return resv_arr;
 	}
-	
-	//룸, 날짜 기준으로 예약정보 가져오기
+
+	// 룸, 날짜 기준으로 예약정보 가져오기
 	public Reservation getResvInfo(int room, Date date) {
 		ReservationId reservationId = createReservationId(room, date);
 		Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
 		return reservationOptional.orElse(null);
 	}
+
+	@Override
+	public void saveNewResv(ReservationDTO resvDTO) {
+		// TODO Auto-generated method stub
+		// DTO에서 엔티티로 매핑하거나 직접 엔티티를 생성하여 저장 로직을 작성합니다.
+		Reservation reservation = mapDTOtoEntity(resvDTO);
+
+		// 예약 정보를 데이터베이스에 저장합니다.
+		reservationRepository.save(reservation);
+
+	}
 	
-	
-	
-	
+	@Override
+	@Transactional
+	public void updateReservation(ReservationDTO resvDTO) {
+		// TODO Auto-generated method stub
+		ReservationId reservationId = createReservationId(resvDTO.getRoom(), resvDTO.getResv_date());
+		Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
+		
+		if (reservationOptional.isPresent()) {
+	        Reservation existingReservation = reservationOptional.get();
+
+	        // 업데이트할 필드들을 가져와서 업데이트한다.
+	        existingReservation.setName(resvDTO.getName());
+	        existingReservation.setAddr(resvDTO.getAddr());
+	        existingReservation.setTelnum(resvDTO.getTelnum());
+	        existingReservation.setIn_name(resvDTO.getIn_name());
+	        existingReservation.setComment(resvDTO.getComment());
+	        existingReservation.setWrite_date(resvDTO.getWrite_date());
+	        existingReservation.setProcessing(resvDTO.getProcessing());
+
+	        // 업데이트된 예약 정보를 저장
+	        reservationRepository.save(existingReservation);
+	    } else {
+	        throw new RuntimeException("예약 정보를 찾을 수 없습니다.");
+	    };
+	}
+
+	@Override
+	@Transactional
+	public void cancelReservation(int room, Date date) {
+		// TODO Auto-generated method stub
+		ReservationId reservationId = createReservationId(room, date);
+	    Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
+
+	    if (reservationOptional.isPresent()) {
+	        // 예약 정보가 존재하면 삭제한다.
+	        reservationRepository.deleteById(reservationId);
+	    } else {
+	        throw new RuntimeException("예약 정보를 찾을 수 없습니다.");
+	    }
+
+	}
 
 	private ReservationId createReservationId(int room, Date date) {
 		return new ReservationId(date, room);
@@ -100,17 +150,6 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 	}
 
-	@Override
-	public void saveNewResv(ReservationDTO resvDTO) {
-		// TODO Auto-generated method stub
-		// DTO에서 엔티티로 매핑하거나 직접 엔티티를 생성하여 저장 로직을 작성합니다.
-		Reservation reservation = mapDTOtoEntity(resvDTO);
-
-		// 예약 정보를 데이터베이스에 저장합니다.
-		reservationRepository.save(reservation);
-
-	}
-
 	private Reservation mapDTOtoEntity(ReservationDTO resvDTO) {
 		Reservation reservation = new Reservation();
 		ReservationId reservationId = createReservationId(resvDTO.getRoom(), resvDTO.getResv_date());
@@ -126,4 +165,5 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setWrite_date(currentDate);
 		return reservation;
 	}
+
 }

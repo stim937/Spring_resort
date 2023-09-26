@@ -6,14 +6,6 @@
 <meta charset="UTF-8">
 <title>예약 현황</title>
 <style>
-body {
-	margin: 10 auto; /* 가운데 정렬을 위한 자동 마진 설정 */
-	text-align: center; /* 텍스트를 가운데 정렬 */
-}
-
-.room-column {
-	width: 20%; /* 각 칼럼의 너비를 33%로 설정하여 동일한 너비로 만듭니다. */
-}
 </style>
 
 </head>
@@ -21,9 +13,14 @@ body {
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container mt-3">
+	<div class="container-fluid mt-3">
 		<h2>
 			예약현황
+			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+  				<path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
+  				<path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+			</svg>
+
 			<c:if test="${sessionScope.loginInfo != null && sessionScope.loginInfo.role == 1}">
 				<span class="badge rounded-pill text-bg-warning">관리자 페이지</span>
 			</c:if>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>선택 내용 보기</title>
+<title>공지사항 내용</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -10,6 +10,17 @@
 		<jsp:include page="../top.jsp" />
 	</div>
 	<div class="container mt-3">
+		<h2>
+			공지사항
+			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-chat-square-text" viewBox="0 0 16 16">
+				<path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+				<path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+			</svg>
+
+			<c:if test="${sessionScope.loginInfo != null && sessionScope.loginInfo.role == 1}">
+				<span class="badge rounded-pill text-bg-warning">관리자 페이지</span>
+			</c:if>
+		</h2>
 		<c:if test="${not empty message}">
 			<div class="alert alert-success w-50">${message}</div>
 		</c:if>
@@ -30,7 +41,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td >
+					<td>
 						<input type="text" class="form-control" name="name" value="${board.name}" readonly>
 					</td>
 				</tr>
@@ -45,7 +56,7 @@
 				<tr>
 					<td>내용</td>
 					<td>
-						 <textarea class="form-control" name="name" rows="7" readonly>${board.content}</textarea>
+						<textarea class="form-control" name="name" rows="7" readonly>${board.content}</textarea>
 					</td>
 				</tr>
 			</table>

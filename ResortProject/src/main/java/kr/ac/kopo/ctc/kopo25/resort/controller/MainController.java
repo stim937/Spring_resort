@@ -30,4 +30,8 @@ public class MainController {
 		return "/introduce/room_3"; // JSP 페이지 이름
 	}
 
+	@GetMapping("/map")
+	public String mapPage() {
+		return "/mapInfo/map"; // JSP 페이지 이름
+	}
 }

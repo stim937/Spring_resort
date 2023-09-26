@@ -15,4 +15,12 @@ public interface ReservationService {
     void saveNewResv(ReservationDTO resvDTO);
     
     Reservation getResvInfo(int room, Date date);
+    
+    // 예약 수정
+    void updateReservation(ReservationDTO resvDTO);
+    
+    // 예약 취소
+    void cancelReservation(int room, Date date);
+
+    
 }

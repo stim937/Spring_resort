@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
+<title>공지사항 검색결과</title>
 </head>
 <body>
 	<div>

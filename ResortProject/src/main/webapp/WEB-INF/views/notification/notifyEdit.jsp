@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>글 수정</title>
+<title>공지사항 수정</title>
 </head>
 <body>
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
 	
-	<div class="container mt-4">
+	<div class="container">
 		<h2>공지사항 수정</h2>
 		<form class="mt-3" action="/pushEdit" method="post" onsubmit="return validateForm()">
 			<div class="form-group">

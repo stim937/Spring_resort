@@ -2,6 +2,8 @@ package kr.ac.kopo.ctc.kopo25.resort.dto;
 
 import java.sql.Date;
 
+import jakarta.validation.constraints.Pattern;
+
 public class ReservationDTO {
     private Date resv_date;
     private int room;
@@ -10,6 +12,8 @@ public class ReservationDTO {
     private String in_name;
     private String name;
     private int processing;
+    
+    @Pattern(regexp = "\\d{11}", message = "전화번호는 11자리 숫자여야 합니다.")	
     private String telnum;
     private Date write_date;
     

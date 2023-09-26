@@ -9,12 +9,16 @@
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container mt-3">
+	<div class="container">
 		<h2 align="center">공지사항
 			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-chat-square-text" viewBox="0 0 16 16">
 				<path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
 				<path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
 			</svg>
+			
+			<c:if test="${sessionScope.loginInfo != null && sessionScope.loginInfo.role == 1}">
+				<span class="badge rounded-pill text-bg-warning">관리자 페이지</span>
+			</c:if>
 		</h2>
 		
 			
@@ -68,7 +72,7 @@
 			<ul class="pagination justify-content-center pagination-sm">
 				<!-- 첫 페이지로 가는 링크 -->
 				<c:if test="${page.number > 0}">
-					<li class="page-item"><a class="page-link" href="1">&lt;&lt;</a></li>
+					<li class="page-item bg-primary"><a class="page-link" href="1">&lt;&lt;</a></li>
 				</c:if>
 
 				<!-- 이전 페이지 링크 -->
