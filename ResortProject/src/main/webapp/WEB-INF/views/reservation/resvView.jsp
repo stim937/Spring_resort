@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>예약자 관리 페이지</title>
-<style>
-body {
-	margin: 0;
-	padding-top: 70px;
-}
-</style>
 </head>
 <body>
 	<div>

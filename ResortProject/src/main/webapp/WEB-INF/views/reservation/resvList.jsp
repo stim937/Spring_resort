@@ -13,7 +13,7 @@
 	<div>
 		<jsp:include page="../top.jsp" />
 	</div>
-	<div class="container-fluid mt-3">
+	<div class="container mt-3">
 		<h2>
 			예약현황
 			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">

@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
 	// 메인 페이지 이동
+	@GetMapping("/")
+	public String index() {
+		return "redirect:/main"; // JSP 페이지 이름
+	}
+	// 메인 페이지 이동
 	@GetMapping("/main")
 	public String mainPage() {
 		return "/introduce/main"; // JSP 페이지 이름
 	}
-
+	
 	// VIP 룸 페이지 이동
 	@GetMapping("/room_01")
 	public String RoomPage1() {

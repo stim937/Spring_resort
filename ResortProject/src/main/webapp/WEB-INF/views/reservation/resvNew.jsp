@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 <title>예약 페이지</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<style>
-body {
-	margin: 0; 
-	padding-top: 70px;
-}
-</style>
 </head>
 <body>
 	<div>

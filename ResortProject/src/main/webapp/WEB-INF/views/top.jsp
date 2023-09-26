@@ -7,15 +7,10 @@
 <header>
 	<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/main">Navbar</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
 			<div class="collapse navbar-collapse" id="navbarColor01">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link active" href="/main">
-							Home <span class="visually-hidden">(current)</span>
+							EZ RESORT <span class="visually-hidden">(current)</span>
 						</a></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Room</a>
 						<div class="dropdown-menu bg-light">
@@ -23,9 +18,9 @@
 							<a class="dropdown-item" href="/room_02">Deluxe Room</a>
 							<a class="dropdown-item" href="/room_03">Standard Room</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="/resvInfo">예약현황</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">주변 관광지</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">오시는길</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">주변 관광지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/resvInfo">예약현황</a></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">리조트소식</a>
 						<div class="dropdown-menu bg-light">
 							<a class="dropdown-item" href="/notifyList">공지사항</a>
