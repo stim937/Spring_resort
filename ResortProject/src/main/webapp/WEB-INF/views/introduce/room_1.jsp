@@ -12,7 +12,10 @@
 
 	<header class="bg-primary py-5">
 		<div class="container px-5">
+
 			<div class="row gx-5 align-items-center justify-content-center">
+
+
 				<div class="col-lg-8 col-xl-7 col-xxl-6">
 					<div class="my-5 text-center text-xl-start">
 						<h1 class="display-5 fw-bolder text-white mb-2">VIP 룸</h1>
@@ -70,28 +73,28 @@
 					<img src="${pageContext.request.contextPath}/img/room/bed.png" class="d-block w-100" alt="bed">
 				</div>
 				<h3 class="fs-2 text-body-emphasis">침실/거실</h3>
-				<p>침대, 식탁의자, 쇼파, 안락의자, 식탁, TV, 전화기, 사각 스툴, 라탄의자</p>				
+				<p>침대, 식탁의자, 쇼파, 안락의자, 식탁, TV, 전화기, 사각 스툴, 라탄의자</p>
 			</div>
 			<div class="feature col">
 				<div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
 					<img src="${pageContext.request.contextPath}/img/room/bathroom.png" class="d-block w-100" alt="bathroom">
 				</div>
 				<h3 class="fs-2 text-body-emphasis">욕실</h3>
-				<p>샴푸, 컨디셔너, 샤워젤, 비누, 빗, 면봉, 화장솜, 욕실컵, 바디스펀지, 바디로션, 비데, 헤어드라이기, 테라스 배스, 페이스타올, 바스타올, 바스로브, 발매트, 욕조</p>				
+				<p>샴푸, 컨디셔너, 샤워젤, 비누, 빗, 면봉, 화장솜, 욕실컵, 바디스펀지, 바디로션, 비데, 헤어드라이기, 테라스 배스, 페이스타올, 바스타올, 바스로브, 발매트, 욕조</p>
 			</div>
 			<div class="feature col">
 				<div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
 					<img src="${pageContext.request.contextPath}/img/room/kitchen.png" class="d-block w-100" alt="kitchen">
 				</div>
 				<h3 class="fs-2 text-body-emphasis">주방</h3>
-				<p>아이스바스켓, 머그잔, 티스푼, 와인잔, 냉장고, 커피포트, 얼음 집게, 정수기</p>				
+				<p>아이스바스켓, 머그잔, 티스푼, 와인잔, 냉장고, 커피포트, 얼음 집게, 정수기</p>
 			</div>
 			<div class="feature col">
 				<div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
 					<img src="${pageContext.request.contextPath}/img/room/other.png" class="d-block w-100" alt="other">
 				</div>
 				<h3 class="fs-2 text-body-emphasis">추가 제공 물품</h3>
-				<p>작설차, 생수 2병/1일, 초고속 무선인터넷(Wi-Fi), 라운더리백, 메모지, 연필, 편지지, 편지봉투, 금고, 소화기, 슬리퍼, 구둣주걱, 커피</p>				
+				<p>작설차, 생수 2병/1일, 초고속 무선인터넷(Wi-Fi), 라운더리백, 메모지, 연필, 편지지, 편지봉투, 금고, 소화기, 슬리퍼, 구둣주걱, 커피</p>
 			</div>
 		</div>
 		<jsp:include page="../bottom.jsp" />

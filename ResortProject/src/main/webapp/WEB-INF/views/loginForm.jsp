@@ -41,7 +41,7 @@ body {
 <body class="text-center">
 	<main class="form-signin">
 		<form action="/authenticate" method="post">
-			<img class="mb-4" src="${pageContext.request.contextPath}/img/bootstrap-icons@2x.png" alt="" width="72" height="57">
+			<img class="mb-4" src="${pageContext.request.contextPath}/img/logo-colored.jpeg" alt="" width="100" height="80">
 			<h1 class="h3 mb-3 fw-normal">로그인 페이지</h1>
 
 			<c:if test="${not empty error}">

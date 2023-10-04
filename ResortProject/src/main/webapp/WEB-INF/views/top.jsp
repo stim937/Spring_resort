@@ -12,15 +12,15 @@
 					<li class="nav-item"><a class="nav-link active" href="/main">
 							EZ RESORT <span class="visually-hidden">(current)</span>
 						</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Room</a>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">객실안내</a>
 						<div class="dropdown-menu bg-light">
 							<a class="dropdown-item" href="/room_01">VIP Room</a>
 							<a class="dropdown-item" href="/room_02">Deluxe Room</a>
 							<a class="dropdown-item" href="/room_03">Standard Room</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">오시는길</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">주변 관광지</a></li>
-					<li class="nav-item"><a class="nav-link" href="/resvInfo">예약현황</a></li>
+					<li class="nav-item"><a class="nav-link" href="/locInfo">위치안내</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tourInfo"">추천 여행지</a></li>
+					<li class="nav-item"><a class="nav-link" href="/resvInfo">예약안내</a></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">리조트소식</a>
 						<div class="dropdown-menu bg-light">
 							<a class="dropdown-item" href="/notifyList">공지사항</a>
