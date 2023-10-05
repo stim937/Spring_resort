@@ -6,7 +6,7 @@
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="collapse navbar-collapse" id="navbarColor01">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link active" href="/main">
