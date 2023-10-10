@@ -47,7 +47,7 @@
 			<thead>
 				<tr>
 					<th>번호</th>
-					<th>제목</th>
+					<th class="w-50">제목</th>
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>등록일</th>

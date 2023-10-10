@@ -43,7 +43,7 @@
 							<h1>주변 관광지</h1>
 							<p>리조트 주변 자연경관 및 관광시설을 즐겨보세요</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="#">
+								<a class="btn btn-lg btn-primary" href="/tourInfo">
 									보러가기
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
   									<path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
@@ -89,9 +89,11 @@
 					</div>
 					<img src="${pageContext.request.contextPath}/img/room/VIP_1.jpg" class="d-block w-100" alt="VIP Room 1">
 					<div class="card-body">
-						<h3 class="card-title">품격과 고급스러움을 경험할 VIP룸</h3>
+						<h3 class="card-title">품격있는 공간, VIP룸</h3>
 						<p class="card-text">
-							VIP룸은 고급스러운 인테리어와 넓은 공간을 자랑합니다. <br />품격 있는 서비스와 높은 프라이버시를 경험하세요.
+							VIP룸은 고급스러운 인테리어를 자랑합니다. <br />
+							리조트에서 제공하는 프리미엄혜탁과 더불어 <br />
+							품격 있는 서비스, 높은 프라이버시를 경험하세요.
 						</p>
 					</div>
 					<div class="card-footer">
@@ -125,7 +127,7 @@
 					</div>
 					<img src="${pageContext.request.contextPath}/img/room/Standard_1.jpg" class="d-block w-100" alt="Standard Room 1">
 					<div class="card-body">
-						<h3 class="card-title">합리적인가격, 스탠다드룸</h3>
+						<h3 class="card-title">합리적 가격, 스탠다드룸</h3>
 						<p class="card-text">스탠다드룸은 합리적인 가격에 편안하고 심플한 분위기로 여행객들에게 편안한 휴식을 제공합니다. 다양한 편의 시설로 편안한 휴식을 경험하세요.</p>
 					</div>
 					<div class="card-footer">

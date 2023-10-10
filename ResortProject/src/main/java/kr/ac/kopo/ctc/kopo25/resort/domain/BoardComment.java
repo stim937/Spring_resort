@@ -25,6 +25,9 @@ public class BoardComment {
 	@Column
 	String content;
 	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="rootid")
+	private BoardItem boardItem;
 
 	public long getId() {
 		return id;
@@ -66,8 +69,6 @@ public class BoardComment {
 		this.boardItem = boardItem;
 	}
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="rootid")
-	private BoardItem boardItem;
+
 	
 }

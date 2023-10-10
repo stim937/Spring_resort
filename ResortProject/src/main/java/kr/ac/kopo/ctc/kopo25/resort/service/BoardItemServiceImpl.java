@@ -101,6 +101,7 @@ public class BoardItemServiceImpl implements BoardItemService {
 	    // Check if loginInfo is not null and it has a name
 	    if (loginInfo != null && loginInfo.getNickname() != null) {
 	        newPost.setName(loginInfo.getNickname());
+	        newPost.setUser(loginInfo);
 	    } else {
 	        // Handle the case where name is not available
 	        newPost.setName("Unknown"); // Set a default name or handle accordingly
