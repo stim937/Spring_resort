@@ -9,39 +9,41 @@ public class MainController {
 	// 메인 페이지 이동
 	@GetMapping("/")
 	public String index() {
-		return "redirect:/main"; // JSP 페이지 이름
+		return "redirect:/main";
 	}
 	// 메인 페이지 이동
 	@GetMapping("/main")
 	public String mainPage() {
-		return "/introduce/main"; // JSP 페이지 이름
+		return "/introduce/main";
 	}
 	
 	// VIP 룸 페이지 이동
 	@GetMapping("/room_01")
 	public String RoomPage1() {
-		return "/introduce/room_1"; // JSP 페이지 이름
+		return "/introduce/room_1";
 	}
 
 	// 디럭스 룸 페이지 이동
 	@GetMapping("/room_02")
 	public String RoomPage2() {
-		return "/introduce/room_2"; // JSP 페이지 이름
+		return "/introduce/room_2";
 	}
 
 	// 스탠다드 룸 페이지 이동
 	@GetMapping("/room_03")
 	public String RoomPage3() {
-		return "/introduce/room_3"; // JSP 페이지 이름
+		return "/introduce/room_3"; 
 	}
 
+	// 리조트 위치정보 페이지 이동
 	@GetMapping("/locInfo")
 	public String locInfoPage() {
-		return "/mapInfo/locInfo"; // JSP 페이지 이름
+		return "/mapInfo/locInfo"; 
 	}
 	
+	// 추천 여행지 페이지 이동
 	@GetMapping("/tourInfo")
 	public String tourInfoPage() {
-		return "/mapInfo/tourInfo"; // JSP 페이지 이름
+		return "/mapInfo/tourInfo";
 	}
 }

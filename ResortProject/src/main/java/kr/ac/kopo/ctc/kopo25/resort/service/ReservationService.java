@@ -12,8 +12,9 @@ public interface ReservationService {
     String[][] getReservationArray(HttpSession session);
     
     //예약하기
-    void saveNewResv(ReservationDTO resvDTO);
+    void saveNewResv(ReservationDTO resvDTO, HttpSession session);
     
+    //예약 정보 확인
     Reservation getResvInfo(int room, Date date);
     
     // 예약 수정
@@ -21,6 +22,4 @@ public interface ReservationService {
     
     // 예약 취소
     void cancelReservation(int room, Date date);
-
-    
 }

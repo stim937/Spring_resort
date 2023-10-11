@@ -47,9 +47,9 @@ public class ReservationController {
 
 	@PostMapping("/resvSave")
 	public String processReservation(@ModelAttribute("reservationDTO") ReservationDTO reservationDTO,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, HttpSession session) {
 		// DTO를 통해 정보 전달 후 데이터베이스에 저장
-		reservationService.saveNewResv(reservationDTO);
+		reservationService.saveNewResv(reservationDTO, session);
 
 		String roomKind = "";
 		int room = reservationDTO.getRoom();

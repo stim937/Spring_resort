@@ -2,110 +2,34 @@ package kr.ac.kopo.ctc.kopo25.resort.domain;
 
 import java.util.Collection;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class BoardItem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	@Column
-	String title;
+    private String title;
+    private String date;
 
-	@Column
-	String date;
+    @Column(columnDefinition = "TEXT")
+    private String content;
 
-	@Column(columnDefinition = "TEXT")
-	String content;
-	
-	@Column
-	String name;
-	
-	@Column
-	int viewcnt;
-	
-	@ManyToOne(optional=false)
-	@JoinColumn(name="user_code")
-	private User user;
+    private String name;
+    private int viewcnt;
 
-	public User getUser() {
-		return user;
-	}
+    @ManyToOne(optional=false)
+    @JoinColumn(name="user_code")
+    private User user;
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getViewcnt() {
-		return viewcnt;
-	}
-
-	public void setViewcnt(int viewcnt) {
-		this.viewcnt = viewcnt;
-	}
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="boardItem", fetch = FetchType.LAZY)
-	private Collection<BoardComment> boardComment;
-
-
-	public Collection<BoardComment> getBoardComment() {
-		return boardComment;
-	}
-
-	public void setBoardComment(Collection<BoardComment> boardComment) {
-		this.boardComment = boardComment;
-	}
-	
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="boardItem", fetch = FetchType.LAZY)
+    private Collection<BoardComment> boardComment;
 }
+

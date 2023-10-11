@@ -107,7 +107,7 @@ public class BoardItemController {
 		// 댓글 작성 폼에서 제출된 댓글 정보를 CommentService를 통해 저장합니다.
 		User loginInfo = (User) session.getAttribute("loginInfo");
 		
-		boardCommentService.saveNewComment(loginInfo.getNickname(), content, boardId);
+		boardCommentService.saveNewComment(loginInfo.getNickname(), content, boardId, session);
 		redirectAttributes.addFlashAttribute("message", "댓글 입력이 성공적으로 완료되었습니다.");
 		// 댓글 저장이 완료되면, 다시 원래의 게시물 페이지로 돌아갑니다.
 		return "redirect:/notifyView/" + boardId;

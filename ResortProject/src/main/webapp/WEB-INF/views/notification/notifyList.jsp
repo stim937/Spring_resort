@@ -23,7 +23,7 @@
 
 
 		<c:if test="${not empty message}">
-			<div class="alert alert-success w-25">${message}</div>
+			<div class="alert alert-success">${message}</div>
 		</c:if>
 
 		<div style="display: flex; justify-content: space-between;">
