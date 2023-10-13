@@ -23,23 +23,6 @@ public class ReservationServiceImpl implements ReservationService {
     private ReservationRepository reservationRepository;
 
     @Override
-    public String roomInfo(int room, Date date, HttpSession session) {
-        ReservationId reservationId = createReservationId(room, date);
-        Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
-
-        if (reservationOptional.isPresent()) {
-            if (session.getAttribute("loginInfo") != null && ((User) session.getAttribute("loginInfo")).getRole() == 1) {
-                Reservation reservation = reservationOptional.get();
-                return reservation.getName();
-            } else {
-                return "예약불가";
-            }
-        } else {
-            return "예약가능";
-        }
-    }
-
-    @Override
     public String[][] getReservationArray(HttpSession session) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -108,6 +91,23 @@ public class ReservationServiceImpl implements ReservationService {
             reservationRepository.deleteById(reservationId);
         } else {
             throw new RuntimeException("예약 정보를 찾을 수 없습니다.");
+        }
+    }
+    
+
+    private String roomInfo(int room, Date date, HttpSession session) {
+        ReservationId reservationId = createReservationId(room, date);
+        Optional<Reservation> reservationOptional = reservationRepository.findById(reservationId);
+
+        if (reservationOptional.isPresent()) {
+            if (session.getAttribute("loginInfo") != null && ((User) session.getAttribute("loginInfo")).getRole() == 1) {
+                Reservation reservation = reservationOptional.get();
+                return reservation.getName();
+            } else {
+                return "예약불가";
+            }
+        } else {
+            return "예약가능";
         }
     }
 
